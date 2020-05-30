@@ -15,10 +15,26 @@ class NavDrawer extends StatelessWidget{
               ),
             ),
           ),
-          ListTile(
-            leading: Icon(Icons.all_inclusive),
-            title: Text('All Genre'),
-            onTap: () => {},
+          InkWell(
+            onTap: (){},
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Icon(Icons.all_inclusive),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('Genre', style: TextStyle(fontSize: 16.0),),
+                      )
+                    ],
+                  ),
+                  Icon(Icons.arrow_drop_down)
+                ]
+              ),
+            )
           ),
         ]
       ),

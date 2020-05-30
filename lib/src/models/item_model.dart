@@ -31,7 +31,7 @@ class Movie{
     : id = parsedjson['id'],
       title = parsedjson['title'],
       story = parsedjson['story'],
-      releaseDate = parsedjson['releaseDate'],
+      releaseDate = parsedjson['release_date'],
       genre = (parsedjson['genre'] as List).map((i) => Genre.fromJson(i)).toList(),
       rating = parsedjson['rating'],
       image = parsedjson['image'],
@@ -41,21 +41,7 @@ class Movie{
       trailer = parsedjson['trailer'],
       downloadSize = parsedjson['downloadSize'];
 
-  //  Map<String, dynamic> toJson() =>
-  //   {
-  //     'id': id,
-  //     'title': title,
-  //     'story': story,
-  //     'releaseDate': releaseDate,
-  //     'genre': genre,
-  //     'rating': rating,
-  //     'image': image,
-  //     'download': download,
-  //     'category': category,
-  //     'createDate': createDate,
-  //     'trailer': trailer,
-  //     'downloadSize': downloadSize
-  //   };
+  
 }
 
 class Genre {
