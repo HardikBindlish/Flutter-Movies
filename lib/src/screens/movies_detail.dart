@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:moviezone/src/models/item_model.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:path_provider/path_provider.dart';
+// import 'package:url_launcher/url_launcher.dart';
+// import 'package:path_provider/path_provider.dart';
 import 'package:dio/dio.dart';
 
 
@@ -125,15 +125,16 @@ class MoviesDetail extends StatelessWidget{
                 borderRadius: BorderRadius.circular(18.0)
               ),
               padding: const EdgeInsets.only(top: 10,bottom: 20),
-              onPressed: () async{
-                final url = movie.trailer;
-                if(await canLaunch(url)){
-                  await launch(url);
-                }
-                else{
-                  throw 'Could not lunch $url';
-                }
-              },
+              onPressed: () {},
+              // async{
+              //   final url = movie.trailer;
+              //   if(await canLaunch(url)){
+              //     await launch(url);
+              //   }
+              //   else{
+              //     throw 'Could not lunch $url';
+              //   }
+              // },
               color: Colors.red[900],
               textColor: Colors.white,
               child: Row(
@@ -152,16 +153,17 @@ class MoviesDetail extends StatelessWidget{
                 borderRadius: BorderRadius.circular(18.0)
               ),
               padding: const EdgeInsets.only(top: 10,bottom: 20),
-              onPressed: () async{
-                final imgUrl = movie.download;
-                Dio dio = new Dio();
+              onPressed: () {},
+              // async{
+              //   final imgUrl = movie.download;
+              //   Dio dio = new Dio();
 
-                var tempDir = await getTemporaryDirectory();
-                String fullPath = tempDir.path + "/tmovie.torrent";
-                print('full path $fullPath');
+              //   var tempDir = await getTemporaryDirectory();
+              //   String fullPath = tempDir.path + "/tmovie.torrent";
+              //   print('full path $fullPath');
 
-                download2(dio, imgUrl, fullPath);
-              },
+              //   download2(dio, imgUrl, fullPath);
+              // },
               color: Colors.grey[700],
               textColor: Colors.white,
               child: Row(
@@ -178,34 +180,34 @@ class MoviesDetail extends StatelessWidget{
     );
   }
 
-  Future download2(Dio dio, String url, String savePath) async {
-    try {
-      Response response = await dio.get(
-        url,
-        onReceiveProgress: showDownloadProgress,
-        //Received data with List<int>
-        options: Options(
-            responseType: ResponseType.bytes,
-            followRedirects: false,
-            validateStatus: (status) {
-              return status < 500;
-            }),
-      );
-      print(response.headers);
-      File file = File(savePath);
-      var raf = file.openSync(mode: FileMode.write);
-      // response.data is List<int> type
-      raf.writeFromSync(response.data);
-      await raf.close();
-    } catch (e) {
-      print(e);
-    }
-  }
+  // Future download2(Dio dio, String url, String savePath) async {
+  //   try {
+  //     Response response = await dio.get(
+  //       url,
+  //       onReceiveProgress: showDownloadProgress,
+  //       //Received data with List<int>
+  //       options: Options(
+  //           responseType: ResponseType.bytes,
+  //           followRedirects: false,
+  //           validateStatus: (status) {
+  //             return status < 500;
+  //           }),
+  //     );
+  //     print(response.headers);
+  //     File file = File(savePath);
+  //     var raf = file.openSync(mode: FileMode.write);
+  //     // response.data is List<int> type
+  //     raf.writeFromSync(response.data);
+  //     await raf.close();
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 
-  void showDownloadProgress(received, total) {
-    if (total != -1) {
-      print((received / total * 100).toStringAsFixed(0) + "%");
-    }
-  }
+  // void showDownloadProgress(received, total) {
+  //   if (total != -1) {
+  //     print((received / total * 100).toStringAsFixed(0) + "%");
+  //   }
+  // }
    
 }
